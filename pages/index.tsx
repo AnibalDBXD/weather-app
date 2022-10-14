@@ -1,5 +1,7 @@
-export default function Home() {
-  return (
-    <h1>Hello world</h1>
-  )
+import { NextPage } from 'next'
+
+const Home: NextPage = () => {
+  return <h1>Hello World</h1>
 }
+
+export default Home
