@@ -2,6 +2,7 @@ import { useToast } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { BASE_URL, API_KEY } from '../constants'
 import { Weather, WeatherResponse } from '../types'
+import { kelvinToCelsius } from '../utils'
 
 const fetchApi = async (path: string): Promise<any> => {
   if (!API_KEY) throw new Error('API_KEY is not defined')
@@ -27,10 +28,10 @@ export const useCityWeather = (city: string): { data: Weather | undefined, isLoa
   const data: Weather | undefined = response && {
     city: response.name,
     country: response.sys.country,
-    temperature: response.main.temp,
-    maxTemperature: response.main.temp_max,
-    minTemperature: response.main.temp_min,
-    date: new Date(response.timezone),
+    temperature: kelvinToCelsius(response.main.temp),
+    maxTemperature: kelvinToCelsius(response.main.temp_max),
+    minTemperature: kelvinToCelsius(response.main.temp_min),
+    date: new Date(),
     weather: response.weather[0].main
   }
 

@@ -1,6 +1,7 @@
 export interface Weather {
   city: string
   country: string
+  // Temp is in Celsius
   temperature: string
   maxTemperature: string
   minTemperature: string
@@ -14,9 +15,10 @@ export interface WeatherResponse {
     country: string
   }
   main: {
-    temp: string
-    temp_max: string
-    temp_min: string
+    // Temp is in Celsius
+    temp: number
+    temp_max: number
+    temp_min: number
   }
   timezone: number
   weather: Array<{
