@@ -6,7 +6,12 @@ import {
   AutoCompleteItem,
   AutoCompleteList
 } from '@choc-ui/chakra-autocomplete'
-import cities from '../../shared/static/countries.json'
+import cities from '../../shared/static/cities.json'
+
+interface SearchCityInputProps {
+  value: string
+  onChange: (value: string) => void
+}
 
 const citiesItem = cities.map((city) => (
   <AutoCompleteItem
@@ -18,9 +23,9 @@ const citiesItem = cities.map((city) => (
   </AutoCompleteItem>
 ))
 
-export const SearchCityInput: React.FC = () => {
+export const SearchCityInput: React.FC<SearchCityInputProps> = ({ onChange, value }) => {
   return (
-    <AutoComplete openOnFocus>
+    <AutoComplete openOnFocus value={value} onChange={onChange} maxSuggestions={5}>
       <InputGroup>
         <InputLeftElement pointerEvents='none'><SearchIcon color='gray.300' /></InputLeftElement>
         <AutoCompleteInput placeholder='Search a city' />
