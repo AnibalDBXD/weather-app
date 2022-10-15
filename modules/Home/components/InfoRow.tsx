@@ -10,7 +10,7 @@ export interface InfoRowProps {
 export const InfoRow: React.FC<InfoRowProps> = ({ children, label, src }) => {
   return (
     <Tooltip label={label} placement='bottom' hasArrow>
-        <Box display="flex" alignItems="center" justifyContent="center" gap="0.5rem">
+        <Box display="flex" alignItems="center" gap="0.5rem">
             <Image src={src} alt={label} width={30} height={30} />
             <Text>{children}</Text>
         </Box>
