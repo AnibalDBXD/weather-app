@@ -1,7 +1,6 @@
 import { NextPage } from 'next'
+import { HomeView } from '../modules/Home/HomeView'
 
-const Home: NextPage = () => {
-  return <h1>Hello World</h1>
-}
+const Home: NextPage = HomeView
 
 export default Home
