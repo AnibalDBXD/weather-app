@@ -25,7 +25,7 @@ const citiesItem = cities.map((city) => (
 
 export const SearchCityInput: React.FC<SearchCityInputProps> = ({ onChange, value }) => {
   return (
-    <AutoComplete openOnFocus value={value} onChange={onChange} maxSuggestions={5}>
+    <AutoComplete openOnFocus defaultValue={value} value={value} onChange={onChange} maxSuggestions={5}>
       <InputGroup>
         <InputLeftElement pointerEvents='none'><SearchIcon color='gray.300' /></InputLeftElement>
         <AutoCompleteInput placeholder='Search a city' />
