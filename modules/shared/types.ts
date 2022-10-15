@@ -7,6 +7,7 @@ export interface Weather {
   minTemperature: string
   date: Date
   weather: string
+  humidity: number
 }
 
 export interface WeatherResponse {
@@ -19,6 +20,7 @@ export interface WeatherResponse {
     temp: number
     temp_max: number
     temp_min: number
+    humidity: number
   }
   timezone: number
   weather: Array<{
