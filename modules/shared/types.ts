@@ -6,7 +6,7 @@ export interface Weather {
   maxTemperature: string
   minTemperature: string
   date: Date
-  weather: string
+  weatherIcon: string
   humidity: number
 }
 

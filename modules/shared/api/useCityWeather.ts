@@ -34,7 +34,7 @@ export const useCityWeather = (city = DEFAULT_CITY): { data: Weather | undefined
     maxTemperature: kelvinToCelsius(response.main.temp_max),
     minTemperature: kelvinToCelsius(response.main.temp_min),
     date: new Date(),
-    weather: response.weather[0].main,
+    weatherIcon: response.weather[0].main,
     humidity: response.main.humidity
   }
 
