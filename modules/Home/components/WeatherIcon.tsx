@@ -16,8 +16,8 @@ const ICONS = {
   Clouds: '/icons/clouds.svg'
 }
 
-export const WeatherIcon: React.FC<{ src: string }> = ({ src }) => {
-  const icon = ICONS[src] || ICONS.Clouds
+export const WeatherIcon: React.FC<{ src?: string }> = ({ src }) => {
+  const icon = ICONS[src ?? ''] || ICONS.Clouds
   return (
     <Image src={icon} height={90} width={90} alt="Weather Day" style={style} priority quality={100} />
   )
