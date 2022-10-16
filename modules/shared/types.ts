@@ -2,9 +2,9 @@ export interface Weather {
   city: string
   country: string
   // Temp is in Celsius
-  temperature: string
-  maxTemperature: string
-  minTemperature: string
+  temperature: number
+  maxTemperature: number
+  minTemperature: number
   date: Date
   weatherIcon: string
   humidity: number

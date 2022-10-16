@@ -79,7 +79,7 @@ export const CityWeatherCard: React.FC<CityWeatherCardProps> = ({ city, isFavori
               {date && <Text fontSize="sm" as="h3">{date.toLocaleString('default', { month: 'long' })} {date.getDate()}</Text>}
               <Text fontSize="md" as="h2">{weatherCity}, {country}</Text>
               <Box display="flex" gap="1rem" position="relative" marginTop="1.5rem">
-                <Text fontSize="5xl" as="h1" marginLeft="50px">{temperature}°C</Text>
+                <Text fontSize="5xl" as="h1" marginLeft="50px">{temperature?.toFixed(0)}°C</Text>
                 <WeatherIcon src={weatherIcon} style={weatherIconStyle} />
               </Box>
             </Box>
