@@ -1,7 +1,8 @@
-import { CloseIcon, StarIcon } from '@chakra-ui/icons'
-import { Box, CircularProgress, Text, IconButton, ScaleFade, useDisclosure } from '@chakra-ui/react'
+import { CalendarIcon, CloseIcon, StarIcon } from '@chakra-ui/icons'
+import { Box, CircularProgress, Text, ScaleFade, useDisclosure } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useCityWeather } from '../../shared/api/useCityWeather'
+import { IconButton } from './IconButton'
 import { InfoRow } from './InfoRow'
 import { WeatherIcon } from './WeatherIcon'
 export interface CityWeatherCardProps {
@@ -12,20 +13,26 @@ export interface CityWeatherCardProps {
   hideOnRemove?: boolean
 }
 
-interface FavoriteButtonProps {
-  isFavorite: boolean
+interface IconButtonProps {
+  isFavorite?: boolean
   onClick: () => void
 }
 
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({ isFavorite, onClick }) => (
+const FavoriteButton: React.FC<IconButtonProps> = ({ isFavorite, onClick }) => (
   <IconButton
     aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
     icon={isFavorite ? <CloseIcon color="red.400" /> : <StarIcon color="yellow.400" />}
     onClick={onClick}
-    size="sm"
-    position="absolute"
     right="10px"
-    bottom="10px"
+  />
+)
+
+const ForecastButton: React.FC<IconButtonProps> = ({ onClick }) => (
+  <IconButton
+    aria-label='Show forecast'
+    icon={<CalendarIcon />}
+    onClick={onClick}
+    right="60px"
   />
 )
 
@@ -80,6 +87,9 @@ export const CityWeatherCard: React.FC<CityWeatherCardProps> = ({ city, isFavori
               } else {
                 onAdd?.(city)
               }
+            }} />
+            <ForecastButton onClick={() => {
+              console.log('Forecast')
             }} />
           </>
         )}
