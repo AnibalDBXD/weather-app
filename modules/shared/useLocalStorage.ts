@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export const useLocalStorage = <T>(key: string, initialValue: T): [T, (value: T) => void] => {
   const [storedValue, setStoredValue] = useState(initialValue)
 
-  const setValue = (value: T | ((val: T) => T)): void => {
+  const setValue = useCallback((value: T | ((val: T) => T)): void => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value
       setStoredValue(valueToStore)
@@ -11,7 +11,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T): [T, (value: T)
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [key, storedValue])
 
   useEffect(() => {
     try {
