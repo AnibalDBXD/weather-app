@@ -1,6 +1,6 @@
 import { CalendarIcon, CloseIcon, StarIcon } from '@chakra-ui/icons'
 import { Box, CircularProgress, Text, ScaleFade, useDisclosure } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { CSSProperties, useEffect } from 'react'
 import { useCityWeather } from '../../shared/api/useCityWeather'
 import { IconButton } from './IconButton'
 import { InfoRow } from './InfoRow'
@@ -11,6 +11,7 @@ export interface CityWeatherCardProps {
   onAdd?: (city: string) => void
   isFavorite?: boolean
   hideOnRemove?: boolean
+  onForecastClick?: (city: string) => void
 }
 
 interface IconButtonProps {
@@ -36,7 +37,13 @@ const ForecastButton: React.FC<IconButtonProps> = ({ onClick }) => (
   />
 )
 
-export const CityWeatherCard: React.FC<CityWeatherCardProps> = ({ city, isFavorite = false, hideOnRemove = true, onAdd, onRemove }) => {
+const weatherIconStyle: CSSProperties = {
+  position: 'absolute',
+  top: '-10px',
+  right: '60%'
+}
+
+export const CityWeatherCard: React.FC<CityWeatherCardProps> = ({ city, isFavorite = false, hideOnRemove = true, onAdd, onRemove, onForecastClick }) => {
   const { data, isLoading } = useCityWeather(city)
   const { isOpen, onClose, onOpen } = useDisclosure({
     defaultIsOpen: true,
@@ -73,7 +80,7 @@ export const CityWeatherCard: React.FC<CityWeatherCardProps> = ({ city, isFavori
               <Text fontSize="md" as="h2">{weatherCity}, {country}</Text>
               <Box display="flex" gap="1rem" position="relative" marginTop="1.5rem">
                 <Text fontSize="5xl" as="h1" marginLeft="50px">{temperature}°C</Text>
-                <WeatherIcon src={weatherIcon} />
+                <WeatherIcon src={weatherIcon} style={weatherIconStyle} />
               </Box>
             </Box>
             <Box marginLeft="2rem" display="flex" flexDirection="column" gap="1rem" position="relative">
@@ -89,7 +96,7 @@ export const CityWeatherCard: React.FC<CityWeatherCardProps> = ({ city, isFavori
               }
             }} />
             <ForecastButton onClick={() => {
-              console.log('Forecast')
+              onForecastClick?.(city)
             }} />
           </>
         )}

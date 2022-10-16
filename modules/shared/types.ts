@@ -23,7 +23,16 @@ export interface WeatherResponse {
     humidity: number
   }
   timezone: number
+  dt_txt: string
   weather: Array<{
     main: string
   }>
+}
+
+export interface ForecastWeatherResponse {
+  list: WeatherResponse[]
+  city: {
+    name: string
+    country: string
+  }
 }

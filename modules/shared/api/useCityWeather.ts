@@ -1,17 +1,8 @@
 import { useToast } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { BASE_URL, API_KEY, DEFAULT_CITY } from '../constants'
+import { DEFAULT_CITY } from '../constants'
 import { Weather, WeatherResponse } from '../types'
-import { kelvinToCelsius } from '../utils'
-
-const fetchApi = async (path: string): Promise<any> => {
-  if (!API_KEY) throw new Error('API_KEY is not defined')
-  const url = `${BASE_URL}${path}&appid=${API_KEY}`
-  const response = await fetch(url.toString())
-
-  if (response.status >= 400) throw new Error(response.statusText)
-  return await response.json()
-}
+import { fetchApi, kelvinToCelsius } from '../utils'
 
 const WEATHER_KEY = 'weather'
 
